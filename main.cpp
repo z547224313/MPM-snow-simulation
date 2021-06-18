@@ -1,5 +1,5 @@
 #include "simulation.hpp"
-#include <Eigen/Dense>
+#include <eigen3/Eigen/Dense>
 #include <chrono>
 #include <ground.hpp>
 #include <iostream>
@@ -73,9 +73,9 @@ int main(int argc, char *argv[]) {
 
   //  small_snowball_smash(simulation);
   //  big_snowball_smash(simulation);
-  //  snowball_on_ground(simulation);
-  //  two_snowball(simulation);
-  snowball_drop(simulation);
+    snowball_on_ground(simulation);
+  //two_snowball(simulation);
+  //snowball_drop(simulation);
 
   for (int i = 0; i < NUM_FRAMES; ++i) {
     std::cout << "Frame " << i << ":" << std::endl;

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <eigen3/Eigen/Core>
 #include "collision_object.hpp"
 
 class Ground : public CollisionObject {

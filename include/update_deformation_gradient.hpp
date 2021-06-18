@@ -3,7 +3,7 @@
 #include "constants.hpp"
 #include "grid.hpp"
 #include "particle.hpp"
-#include <Eigen/Dense>
+#include <eigen3/Eigen/Dense>
 #include <cmath>
 #include <iostream>
 

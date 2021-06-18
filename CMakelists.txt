@@ -9,7 +9,7 @@ add_executable(final)
 
 target_include_directories(final PRIVATE extern/eigen)
 target_include_directories(final PRIVATE include)
-
+include_directories(/usr/local/include)
 set_property(TARGET final PROPERTY CXX_STANDARD 17)
 
 # PLATFORM DEFINITIONS AND SETTINGS

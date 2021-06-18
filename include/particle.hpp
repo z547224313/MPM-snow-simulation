@@ -4,7 +4,7 @@
 #include "grid.hpp"
 
 #include "collision_object.hpp"
-#include <Eigen/Core>
+#include <eigen3/Eigen/Core>
 
 class Particle {
 public:

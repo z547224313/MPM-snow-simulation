@@ -1,6 +1,7 @@
 #pragma once
 
-#include <Eigen/Dense>
+#include <eigen3/Eigen/Dense>
+#include <eigen3/Eigen/Core>
 
 class CollisionObject {
 public:
