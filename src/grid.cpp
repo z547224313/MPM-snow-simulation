@@ -9,8 +9,10 @@ GridCoordinate Grid::get_coordinate(const Eigen::Vector3d &position) const {
 }
 
 void Grid::AppendMass(int x, int y, int z, double mass) {
+    // m_nodes 一个无序map结构 key是 栅格坐标系 value是 格子存储的几个基本信息数据结构
   auto it = m_nodes.find(GridCoordinate{x, y, z});
   if (it == m_nodes.end()) {
+      // 粒子中加入信息 质量 这时 速度和力都是0
     m_nodes[{x, y, z}] = NodeData{mass, Eigen::Vector3d::Zero(), Eigen::Vector3d::Zero() };
   } else {
     m_nodes[{x, y, z}].m_mass += mass;

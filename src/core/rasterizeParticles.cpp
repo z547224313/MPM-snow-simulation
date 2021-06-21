@@ -36,19 +36,19 @@ double calculate_derivative(double h_inverse, double d_offset, double offset1,
 }
 } // namespace
 
-void RasterizeParticles(std::vector<Particle> &p, Grid &grid,
+void            RasterizeParticles(std::vector<Particle> &p, Grid &grid,
                         bool calculateVolumes) {
   // Common numbers used in calculations
-  const double h_inverse = 1.0 / grid.cell_size();
+  const double h_inverse = 1.0 / grid.cell_size(); // 网格间距的倒数
 
   for (Particle &particle : p) {
     const double particle_x = particle.m_position(0);
     const double particle_y = particle.m_position(1);
     const double particle_z = particle.m_position(2);
     const double particle_mass = particle.m_mass;
-    // Negative particles need to get rounded 'down'
+    // Negative particles need to get rounded 'down'  这里记录了 粒子在格子中第几个位置
     const int x_index =
-        static_cast<int>(std::floor(particle_x / grid.cell_size()));
+        static_cast<int>(std::floor(particle_x / grid.cell_size()));  // x的坐标 / 格子距离
     const int y_index =
         static_cast<int>(std::floor(particle_y / grid.cell_size()));
     const int z_index =
@@ -62,11 +62,11 @@ void RasterizeParticles(std::vector<Particle> &p, Grid &grid,
           const int grid_x = x_index + a;
           const int grid_y = y_index + b;
           const int grid_z = z_index + c;
-          const double x_offset = particle_x - grid_x * grid.cell_size();
+          const double x_offset = particle_x - grid_x * grid.cell_size(); //（xp - ih）
           const double y_offset = particle_y - grid_y * grid.cell_size();
           const double z_offset = particle_z - grid_z * grid.cell_size();
           const double weight =
-              calculate_weight(h_inverse, x_offset, y_offset, z_offset);
+              calculate_weight(h_inverse, x_offset, y_offset, z_offset); // 计算出来权重 ，用来计算粒子质量
           grid.AppendMass(grid_x, grid_y, grid_z, particle_mass * weight);
           // Cache the weights to avoid calculating again when normalizing
           // velocities
@@ -93,6 +93,7 @@ void RasterizeParticles(std::vector<Particle> &p, Grid &grid,
   // properly
   unsigned int cache_index = 0;
   for (Particle &particle : p) {
+      // 第一次计算体积 密度 初始化为 0
     if (calculateVolumes) {
       particle.m_volume = 0.0;
       particle.m_density = 0.0;
@@ -123,6 +124,7 @@ void RasterizeParticles(std::vector<Particle> &p, Grid &grid,
               particle.m_weights[GridCoordinate{grid_x, grid_y, grid_z}];
           if (node_mass == 0.0 || cached_weight == 0.0)
             continue;
+          // 计算速度
           grid.AppendVelocity(grid_x, grid_y, grid_z,
                               velocity * particle_mass * cached_weight /
                                   node_mass);

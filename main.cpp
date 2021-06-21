@@ -15,7 +15,7 @@ namespace {
  */
 void small_snowball_smash(Simulation &simulation) {
   simulation.add_sphere(0.5, 10, Eigen::Vector3d(-2, 2, 0),
-                        Eigen::Vector3d(12, 0, 0), 0.2);
+                        Eigen::Vector3d(15, 0, 0), 0.2);
   simulation.add_sphere(0.5, 10, Eigen::Vector3d(2, 2, 0),
                         Eigen::Vector3d(-12, 0, 0), 0.2);
   simulation.add_collision_object(std::make_unique<Ground>(0));
@@ -71,9 +71,9 @@ int main(int argc, char *argv[]) {
   Constants constants;
   Simulation simulation(constants);
 
-  //  small_snowball_smash(simulation);
-  //  big_snowball_smash(simulation);
-    snowball_on_ground(simulation);
+    small_snowball_smash(simulation);
+  // big_snowball_smash(simulation);
+   // snowball_on_ground(simulation);
   //two_snowball(simulation);
   //snowball_drop(simulation);
 

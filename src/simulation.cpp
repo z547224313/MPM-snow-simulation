@@ -40,11 +40,12 @@ Simulation::Simulation(const Constants &constants)
 void Simulation::add_sphere(double radius, unsigned int edge_length,
                             const Eigen::Vector3d &position,
                             const Eigen::Vector3d &velocity, double mass) {
+    //粒度
   const double granularity = radius * 2.0 / static_cast<double>(edge_length);
 
   Eigen::Vector3d p(position(0) - radius, position(1) - radius,
                     position(2) - radius);
-
+  // 统一分布
   std::uniform_real_distribution<double> distribution(-granularity * 0.2,
                                                       granularity * 0.2);
 
@@ -71,9 +72,11 @@ void Simulation::Update(double dt) {
   m_firstTick = false;
 
   // 3. Compute grid forces.
+    // dt 与每秒播放张数相关
   CalculateForces(constants, particles, grid, dt);
 
   // 4. Update velocities on grid.
+  // dt 与每秒播放张数相关
   UpdateGridVelocity(grid, dt);
 
   // 5. Grid-based body collisions.

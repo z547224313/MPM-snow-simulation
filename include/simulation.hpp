@@ -23,20 +23,20 @@ public:
 
   const Constants constants;
 
-  std::vector<Particle> particles;
-  std::vector<std::unique_ptr<CollisionObject>> collision_objects;
-  Grid grid;
+  std::vector<Particle> particles; //粒子
+  std::vector<std::unique_ptr<CollisionObject>> collision_objects; // 碰撞物品
+  Grid grid; // 栅格
 
   Camera camera;
   Image image;
-  double render_depth_near = 1;
-  double render_depth_far = 10;
+  double render_depth_near = 1; // 渲染 附近深度
+  double render_depth_far = 10; // 渲染附近远度
 
-  void add_collision_object(std::unique_ptr<CollisionObject> ptr);
+  void add_collision_object(std::unique_ptr<CollisionObject> ptr); // 增加碰撞物
 
-  void render(int frame_index);
+  void render(int frame_index); // 每一帧的帧数
 
 private:
   bool m_firstTick;
-  std::mt19937 gen;
+  std::mt19937 gen; //巨大随机数
 };

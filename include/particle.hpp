@@ -16,7 +16,7 @@ public:
   double m_density;
 
   /**
-   * Deformation gradients
+   * Deformation gradients 形变梯度
    */
   Eigen::Matrix3d m_def_elastic, m_def_plastic;
 
